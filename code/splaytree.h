@@ -173,21 +173,16 @@ void SplayTree<Key>::splay(SplayTree<Key>* root) {
     SplayTree<Key>* parent = (*this)->returnParent(root);
     
     if (parent) {
-        cout << "Parent " << (*this)->key << endl;
         bool isLeftChildOfParent = (*parent)->isLeftChild(&(**this));
         SplayTree<Key>* grandparent = (*parent)->returnParent(root);
         
-        cout << "After parent" << endl;
-        
         if (grandparent) {
             bool isLeftChildOfGrandparent = (*grandparent)->isLeftChild(&(**parent));
-            cout << "After grandparent" << endl;
             
             if (isLeftChildOfParent == isLeftChildOfGrandparent) {
                 grandparent->rotate(!isLeftChildOfGrandparent);
                 grandparent->rotate(!isLeftChildOfGrandparent);
             } else {
-                cout << "In" << endl;
                 parent->rotate(!isLeftChildOfParent);
                 grandparent->rotate(!isLeftChildOfGrandparent);
             }
